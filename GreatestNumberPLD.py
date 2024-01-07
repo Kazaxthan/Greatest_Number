@@ -11,37 +11,54 @@ frame = ctk.CTkFrame(window)
 frame.pack(expand=True, ipadx=50, ipady=10)
 
 
-# Back end
+#Back end
 def done():
-    # Get the input values using get() method
-    digit1 = int(entry1.get())
-    digit2 = int(entry2.get())
-    digit3 = int(entry3.get())
+    
+    input1 = entry1.get().strip()
+    input2 = entry2.get().strip()
+    input3 = entry3.get().strip()
 
-    if digit1 > digit2 and digit1 > digit3:
-        highest_digit = digit1
-    elif digit2 > digit1 and digit2 > digit3:
-        highest_digit = digit2
-    else:
-        highest_digit = digit3
+   
+    try:
+        #Pag mali
+        if not input1 or not input2 or not input3:
+            raise ValueError("No special characters")
 
-    # Create a new window for the result
-    app = ctk.CTk()
-    app.title("RESULT")
-    app.geometry('500x500')
-    result_frame = ctk.CTkFrame(app)
-    result_frame.pack(expand=True)
+        digit1 = float(input1)
+        digit2 = float(input2)
+        digit3 = float(input3)
 
-    # Display the result using a label
-    result_label = ctk.CTkLabel(result_frame, text=f"Highest Digit: {highest_digit}", text_color="#FFE5B4",
-                                font=("Helvetica", 19))
-    result_label.pack()
+        #Pag tama
+        if digit1 > digit2 and digit1 > digit3:
+            highest_digit = digit1
+        elif digit2 > digit1 and digit2 > digit3:
+            highest_digit = digit2
+        else:
+            highest_digit = digit3
 
-    app.mainloop()
+        # Result Window
+        app = ctk.CTk()
+        app.title("RESULT")
+        app.geometry('500x500')
+        result_frame = ctk.CTkFrame(app)
+        result_frame.pack(expand=True)
+        
+        
+        result_label = ctk.CTkLabel(result_frame, text=f"Highest Digit: {highest_digit:.2f}", text_color="#FFE5B4",
+                                    font=("Helvetica", 35))
+        result_label.pack()
+
+        app.mainloop()
+        
+        # Error code
+    except ValueError as e:
+    
+        error_message = ctk.CTkLabel(frame, text=str(e), text_color="red", font=("Helvetica", 15))
+        error_message.pack()
 
 
 # Front end
-Label_entry1 = ctk.CTkLabel(frame, text="Input One number on each box.")
+Label_entry1 = ctk.CTkLabel(frame, text="Input any number in each box.")
 Label_entry1.pack()
 
 entry1 = ctk.CTkEntry(frame, placeholder_text="INPUT 1")
