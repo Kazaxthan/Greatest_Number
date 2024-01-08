@@ -40,12 +40,12 @@ def done():
         app = ctk.CTk()
         app.title("RESULT")
         app.geometry('500x500')
-        result_frame = ctk.CTkFrame(app)
+        result_frame = ctk.CTkFrame(app, corner_radius= 1000)
         result_frame.pack(expand=True)
         
         
-        result_label = ctk.CTkLabel(result_frame, text=f"Highest Digit: {highest_digit:.2f}", text_color="#FFE5B4",
-                                    font=("Helvetica", 35))
+        result_label = ctk.CTkLabel(result_frame, text=f"Highest Digit: {highest_digit:.2f}", text_color="#F2F3F5",
+                                    font=('Times', 30, 'bold'))
         result_label.pack()
 
         app.mainloop()
@@ -58,8 +58,11 @@ def done():
 
 
 # Front end
-Label_entry1 = ctk.CTkLabel(frame, text="Input any number in each box.")
-Label_entry1.pack()
+Headline = ctk.CTkLabel(frame, text="FINDING THE GREATEST NUMBER", font=('Times', 30, 'bold'), text_color= '#F2F3F5')
+Headline.pack(padx= 10, pady=10)
+
+Label_entry1 = ctk.CTkLabel(frame, text="Input any number in each box.", font=('Fixedsys', 19),fg_color=  '#98FB98', corner_radius= 20, text_color= '#000000')
+Label_entry1.pack(padx= 10, pady=30)
 
 entry1 = ctk.CTkEntry(frame, placeholder_text="INPUT 1")
 entry1.pack(padx=30, pady=30)
@@ -70,7 +73,7 @@ entry2.pack(padx=30, pady=30)
 entry3 = ctk.CTkEntry(frame, placeholder_text="INPUT 3")
 entry3.pack(padx=30, pady=30)
 
-Enter_button = ctk.CTkButton(frame, text="DONE", command=done)
-Enter_button.pack()
+Enter_button = ctk.CTkButton(frame, text="DONE", command=done,)
+Enter_button.pack(padx = 20, pady=10)
 
 window.mainloop()
